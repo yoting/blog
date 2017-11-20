@@ -1,4 +1,4 @@
-yoting博客系统原始文件，线上博客地址：http://yoting.github.io
+yoting博客系统原始文件，线上博客地址：http://yoting.github.com/blog
 ==========================================
 文件和文件夹介绍：
 	_config.yml：jekyll的配置文件，包含页面读取的内容信息，jekyll命令的默然参数等等
@@ -25,7 +25,8 @@ git相关命令：
 	使用git add .添加文件
 	使用git add --all添加包含被本地删除的文件
 	使用git commit -m 'memo'提交本地git
-	使用git push origin master推送本地分支到github上
+	使用git push origin master推送本地master分支到github上
+	使用git push origin gh-pages推送本地gh-pages分支到github上
 	
 	使用git clone xxx.git克隆项目到本地
 	使用git init初始化本地文件夹

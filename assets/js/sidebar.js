@@ -6,9 +6,9 @@ $( document ).ready(function() {
 	var quickMenuDown = $('#quick-menu-down');
 	quickMenu.click(function(){
 		if(quickMenuDown.css("display") == "none"){
-			quickMenuDown.delay(1000).css("display","inline-table");	
+			quickMenuDown.delay("slow").css("display","inline-table");	
 		}else{
-			quickMenuDown.delay(1000).css("display","none");
+			quickMenuDown.delay("slow").css("display","none");
 		}
 		if(quickMenuLeft.attr("src").endsWith("open.png")){
 			quickMenuLeft.attr("src","/blog/assets/ico/yanjing_close.png");

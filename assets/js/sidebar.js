@@ -5,7 +5,11 @@ $( document ).ready(function() {
 	var quickMenuRight = $('#yanjing-right');
 	var quickMenuDown = $('#quick-menu-down');
 	quickMenu.click(function(){
-		quickMenuDown.fadeIn(1000);
+		if(quickMenu.css("display") == "none"){
+			quickMenu.fadeIn(1000);
+		}else{
+			quickMenu.fadeOut(1000);
+		}
 		if(quickMenuLeft.attr("src").endsWith("open.png")){
 			quickMenuLeft.attr("src","/blog/assets/ico/yanjing_close.png");
 		}else{

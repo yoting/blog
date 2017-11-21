@@ -5,7 +5,7 @@ $( document ).ready(function() {
 	var quickMenuRight = $('#yanjing-right');
 	var quickMenuDown = $('#quick-menu-down');
 	quickMenu.click(function(){
-		quickMenuDown.toggle(1000);
+		quickMenuDown.fadeIn(1000);
 		if(quickMenuLeft.attr("src").endsWith("open.png")){
 			quickMenuLeft.attr("src","/blog/assets/ico/yanjing_close.png");
 		}else{

@@ -5,10 +5,10 @@ $( document ).ready(function() {
 	var quickMenuRight = $('#yanjing-right');
 	var quickMenuDown = $('#quick-menu-down');
 	quickMenu.click(function(){
-		if(quickMenu.css("display") == "none"){
-			quickMenu.fadeIn(1000);
+		if(quickMenuDown.css("display") == "none"){
+			quickMenuDown.fadeIn(1000);
 		}else{
-			quickMenu.fadeOut(1000);
+			quickMenuDown.fadeOut(1000);
 		}
 		if(quickMenuLeft.attr("src").endsWith("open.png")){
 			quickMenuLeft.attr("src","/blog/assets/ico/yanjing_close.png");

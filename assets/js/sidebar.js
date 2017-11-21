@@ -6,9 +6,9 @@ $( document ).ready(function() {
 	var quickMenuDown = $('#quick-menu-down');
 	quickMenu.click(function(){
 		if(quickMenuDown.css("display") == "none"){
-			quickMenuDown.fadeIn("slow");
+			quickMenuDown.css("display","inline-table");	
 		}else{
-			quickMenuDown.fadeOut("slow");
+			quickMenuDown.css("display","none");
 		}
 		if(quickMenuLeft.attr("src").endsWith("open.png")){
 			quickMenuLeft.attr("src","/blog/assets/ico/yanjing_close.png");

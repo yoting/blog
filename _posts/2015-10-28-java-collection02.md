@@ -1,10 +1,11 @@
 ---
 layout: post
-title: Java的foreach循环中删除元素
-date: 2015-10-29 13:36:27
+title: Java的foreach循环中删除集合元素
+date: 2015-10-28
 categories: Java
-tags: foreach
+tags: Java集合
 ---
+
 　　在集合操作的时候，我们通常会使用foreach增强for循环遍历集合，比如我们想输出集合中的每个元素，我们可以使用for循环遍历。代码如下：
 
 ```java
@@ -71,5 +72,3 @@ while (itList.hasNext()) {
 　　这里只列举了List集合的例子，对于Set集合和Map集合是相同的。
 
 ​
-
-

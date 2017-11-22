@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java集合和数组的转换
-date: 2014-10-01
+date: 2017-10-01
 categories: Java
 tags: Java集合
 ---
@@ -38,6 +38,7 @@ String[] arrStr3 = (String[]) listStr.toArray();//这样是不行的。不能直
 **3、判断某个元素是否属于集合或者数组**
 
 &ensp;&ensp;&ensp;&ensp;对于集合对象，提供了直接使用的方法。可以通过contailns方法判断。当然也可以自己使用最暴力的方式，遍历集合中的所有元素。
+
 &ensp;&ensp;&ensp;&ensp;对于数组对象，没有直接使用的方法，我们可以使用最暴力的方式，遍历数组，但是显然这样做不优雅。所以我们可以借助上面说的现将数组对象转换为集合对象，然后使用集合的contains方法。如果我们只是想判断特定元素是否存在于数组对象中，不对原数据进行修改，那么就可以直接使用Arrays.asList()方法，生成一个固定大小的List，然后直接使用contains方法，具体代码如下：
 
 ```java

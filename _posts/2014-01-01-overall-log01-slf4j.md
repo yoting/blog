@@ -1,8 +1,8 @@
 ---
 layout: post
 title: slf4j介绍
-date: 2016-01-01
-categories: "Complex"
+date: 2015-03-01
+categories: "Overall"
 tags: slf4j
 ---
 

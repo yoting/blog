@@ -2,10 +2,10 @@
 layout: post
 title: slf4j介绍
 date: 2016-01-01
-categories: "Common_Utils"
+categories: "Complex"
 tags: slf4j
 ---
- 
+
 　**slf4j(simple logging facade for java)**是Java的简单的日志门面，它不是具体的日志解决方案，它只服务于各种各样slf4j-log的日志系统。这里的slf4j-log可以是log4j，可以是jdk的日志，可以是logback，还可以是slf4j-simple等等。按照官方的说法，SLF4J是一个用于日志系统的简单Facade，允许最终用户在部署其应用时使用其所希望的日志系统。这里其实用到了一种设计模式（Facade设计模式，门面设计模式）。如下图：
 ![slf4j](/assets/yoting/post/commonUtils/01.png)
 
@@ -20,11 +20,11 @@ tags: slf4j
 ```java
 import org.slf4j.Logger;  
 import org.slf4j.LoggerFactory;  
-  
+
 public class Slf4jTest {  
-    // 首先获得日志记录这个对象 ，这里一定要用slf4j的类或者接口，不要用具体实现框架的类或者接口 
+    // 首先获得日志记录这个对象 ，这里一定要用slf4j的类或者接口，不要用具体实现框架的类或者接口
     static private Logger logger = LoggerFactory.getLogger(Slf4jTest.class);  
-  
+
     public static void main(String[] args) {  
         // 记录error信息  
         logger.error("[info message]");  
@@ -39,7 +39,7 @@ public class Slf4jTest {
     }  
 }  
 ```
- 
+
 具体使用哪种日志系统，这个可以随意切换。切换日志系统只需要将响应的框架包放到类路径下即可。演示如下：
 
 - 1、使用slf4j的simple日志系统：

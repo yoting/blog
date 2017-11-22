@@ -1,8 +1,8 @@
 ---
 layout: post
 title: log4j介绍
-date: 2016-01-01
-categories: "Common_Utils"
+date: 2015-03-03
+categories: "Overall"
 tags: log4j
 ---
 **第一部分：Log4j解释和使用演示**
@@ -17,7 +17,7 @@ log4j.appender.Console = org.apache.log4j.ConsoleAppender
 log4j.appender.Console.Target = System.out
 log4j.appender.Console.layout = org.apache.log4j.PatternLayout
 log4j.appender.Console.layout.ConversionPattern = %d{yyyy-MM-dd HH:mm:ss} %l <%p> %m%n
- 
+
 #配置特定包下的日志
 log4j.logger.com.swu.gusi=debug,A1
 log4j.appender.A1 = org.apache.log4j.ConsoleAppender
@@ -25,32 +25,32 @@ log4j.appender.A1.Target = System.out
 log4j.appender.A1.layout = org.apache.log4j.PatternLayout
 log4j.appender.A1.layout.ConversionPattern = A1:%d{yyyy-MM-dd HH:mm:ss} %l <%p> %m%n
 ```
- 
+
 - 第二步：在程序代码中使用logger对象记录日志信息到指定的地方。
 
 ```java
 package com.swu.gusi;  
-  
+
 import org.apache.log4j.Logger;  
-  
+
 public class Log4jTest {  
     // 得到一个logger对象，用以写日志  
     static Logger logger = Logger.getLogger(Log4jTest.class);  
-  
+
     public static void main(String[] args) {  
         // logger.setLevel(Level.ERROR);  
         logger.fatal("[fatal message]");  
-  
+
         logger.error("[error message]");  
-  
+
         logger.warn("[warn message]");  
-  
+
         logger.info("[info message]");  
-  
+
         logger.debug("[debug message]");  
-  
+
         logger.trace("[trace message]");  
-  
+
         System.out.println("hello wrold");  
     }  
 }  
@@ -71,7 +71,7 @@ A1:2014-09-20 19:08:06 com.swu.gusi.Log4jTest.main(Log4jTest.java:19) <DEBUG> [d
 2014-09-20 19:08:06 com.swu.gusi.Log4jTest.main(Log4jTest.java:19) <DEBUG> [debug message]
 hello wrold
 ```
- 
+
 **第二部分：log4j配置解释**
 　　配置文件的作用总结就是：*告诉Log4J 把什么样的信息、以什么样的格式、输出到什么地方*。这样就可以很灵活的修改日志的输出格式，位置等等。
 　　Log4j主要由3部分组成：**Loggers**(记录器)，**Appenders** (输出源)和**Layouts**(布局)，这里可简单理解为日志类别，日志要输出的地方和日志以何种形式输出。综合使用这三个组件可以轻松的记录信息的类型和级别，并可以在运行时控制日志输出的样式和位置。下面对三个组件分别进行说明：
@@ -93,7 +93,7 @@ log4j.logger.packagePath=[level],appenderName1,appenderName2,...
 log4j.rootLogger = info , Console，File
 ```
 
-<h4>2、appenders：输出源</h4> 
+<h4>2、appenders：输出源</h4>
 　　这里表示日志记录输出位置，我们输出到控制台、文件、甚至是自己写的输出到指定位置等等。语法如下：
 
 ```xml
@@ -111,7 +111,7 @@ log4j.appender.appenderName.option = valueN
 #首先配置logger
 log4j.rootLogger = info , console，file
 #接着配置分别两个appender：console和file
-log4j.appender.console=org.apache.log4j.ConsoleAppender 
+log4j.appender.console=org.apache.log4j.ConsoleAppender
 #配置Console的其他可选信息
 log4j.appender.console.Target = System.out
 #配置File的appender和上面的基本相同，只是有写自己的可选配置不同
@@ -149,7 +149,7 @@ log4j.paaender.file.File=C:/logFile.txt
 	File=C:/log.txt：输出文件位置
 	Append=false：是否一追加的方式写到文件，默认是true
 	MaxFileSize=100KB:临时文件最大尺寸，后缀可以是KB, MB 或者是 GB
-	MaxBackupIndex=2:指定可以产生的滚动文件的最大数 
+	MaxBackupIndex=2:指定可以产生的滚动文件的最大数
 
 - org.apache.log4j.WriterAppender（将日志信息以stream的形式输出到指定的位置）
 *上面介绍的几种appender其实都是WriterAppender的子类*
@@ -163,7 +163,7 @@ log4j.paaender.file.File=C:/logFile.txt
 
 ```xml
 #配置appender的layout
- log4j.appender.appenderName.layout = fully.qualified.name.of.layout.class 
+ log4j.appender.appenderName.layout = fully.qualified.name.of.layout.class
 #配置layout的参数选项配置信息，每一个layout的可选参数配置可能不同
 log4j.appender.appenderName.option1 = value1
 ```
@@ -174,13 +174,13 @@ log4j.appender.appenderName.option1 = value1
 #首先配置logger
 log4j.rootLogger = info , console，file
 #接着配置分别两个appender：console和file
-log4j.appender.console=org.apache.log4j.ConsoleAppender 
+log4j.appender.console=org.apache.log4j.ConsoleAppender
 #配置Console的其他可选信息
 log4j.appender.console.Target = System.out
 #配置consloe的layout
-log4j.appender.console.layout=layout=org.apache.log4j.PatternLayout 
+log4j.appender.console.layout=layout=org.apache.log4j.PatternLayout
 #配置layout的可选参数,自定义样式
-log4j.appender.console.layout.ConversionPattern=%r [%t] [%p] - %c -%l -%m%n 
+log4j.appender.console.layout.ConversionPattern=%r [%t] [%p] - %c -%l -%m%n
 #配置File的appender和上面的基本相同，只是有写自己的可选配置不同
 log4j.appender.file =org.apache.log4j.FileAppender
 #配置File的书写方式是追加在文件末尾还是覆盖重写，默认是追加的方式
@@ -188,7 +188,7 @@ log4j.appender.file.Append=false
 #配置File输出文件的文件位置
 log4j.paaender.file.File=C:/logFile.txt
 #配置file的layout
-log4j.appender.file.layout=org.apache.log4j.HTMLLayout 
+log4j.appender.file.layout=org.apache.log4j.HTMLLayout
 log4j.appender.file.layout.Title=testTitle
 ```
 
@@ -226,7 +226,7 @@ ConversionPattern的各个参数说明：
  2)%-20c:指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，"-"号指定左对齐。
  3)%.30c:指定输出category的名称，最大的宽度是30，如果category的名称大于30的话，就会将左边多出的字符截掉，但小于30的话也不会有空格。
  4)%20.30c:如果category的名称小于20就补空格，并且右对齐，如果其名称长于30字符，就从左边超出的字符截掉。
-``` 
+```
 　　​上面的表格中只是列出了一些比较常用的layout和对应的layout的一些基本常用的可选配置信息，apache还给我们提供了很多其他的layout，下图可以看见所有apache提供的layout。
 
 ![log4j](/assets/yoting/post/commonUtils/03.png)

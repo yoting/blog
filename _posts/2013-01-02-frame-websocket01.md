@@ -2,7 +2,7 @@
 layout: post
 title: Websocket介绍和简单使用
 date: 2017-11-19
-categories: frame
+categories: "Frame"
 tags: websocket
 ---
 
@@ -31,42 +31,42 @@ tags: websocket
          <div id="messages"></div>
          <script type="text/javascript">
           var webSocket = new WebSocket('ws://localhost:8080/demo');
-          
+
           webSocket.onerror = function(event) {
            onError(event)
           };
-          
+
           webSocket.onopen = function(event) {
            onOpen(event)
           };
-           
+
           webSocket.onclose = function(event) {
            onClose(event)
           };
-          
+
           webSocket.onmessage = function(event) {
            onMessage(event)
           };
-          
+
           function onMessage(event) {
            document.getElementById('messages').innerHTML
             += '<br />' + event.data;
           }
-          
+
           function onOpen(event) {
            document.getElementById('messages').innerHTML
             = 'Connection established';
           }
-           
+
           function onClose(event) {
            document.getElementById('messages').innerHTML
             += '<br />disconnection';
           }
-          
+
           function onError(event) {
            alert(event.data);
           }
-          
+
           function start() {
            webSocket.send('hello');
            return false;
@@ -518,5 +518,3 @@ public class DemoWebsocketHandler extends AbstractWebSocketHandler {
 </servlet-mapping>
 ```
 &ensp;&ensp;&ensp;&ensp;以上就是对websocket的简单使用，通过客户端发起websocket连接，到互相发送消息。如果直接用websocket编写web应用，类似与直接使用tcp套接字，这样的效率很低。 STOMP 相当于基于websocket之上的一个高层级的线路协议，我们可以使用STOMP协议进行消息的交换，具体做法示例下一篇文章介绍和尝试！
-
-

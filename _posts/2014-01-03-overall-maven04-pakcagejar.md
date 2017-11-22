@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Maven插件生成可执行的jar包
-date: 2017-04-11
-categories: "Common_Utils"
+date: 2015-08-11
+categories: "Overall"
 tags: maven
 ---
 
@@ -51,11 +51,11 @@ tags: maven
     - 生成的后最美为jar-with-dependencies.jar包的文件位于target目录下
 - 运行可执行的Jar包
     - 命令：java -jar xxx-jar-with-dependencies.jar
-    
+
 　　但是该插件生成的jar包中如果含有xml配置文件，比如通过spring的xml配置文件定义bean，那么它是不能把xml的schemal相关的xsd引入，所以对于这种jar包，直接运行是会报错的，这是assembly的一个bug，所以这个时候，我们需要用另一个插件shade
 
 - **插件maven-shade-plugin**
-    
+
 　　引入shade插件的依赖，并且配置插件
 
 ```xml
@@ -82,7 +82,7 @@ tags: maven
 				</filters>
 				<shadedArtifactAttached>true</shadedArtifactAttached>
 				<!-- 指定生成jar包的后缀，可以是任意字符串 -->
-				<shadedClassifierName>shade</shadedClassifierName> 
+				<shadedClassifierName>shade</shadedClassifierName>
 				<transformers>
 					<transformer
 						implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">

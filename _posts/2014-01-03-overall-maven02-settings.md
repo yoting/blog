@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Maven的settings文件
-date: 2016-11-30
-categories: "Common_Utils"
+date: 2015-05-21
+categories: "Overall"
 tags: maven
 ---
 　　maven是构建工具，最大的便利之处就是帮助我们管理jar包依赖，当然还有其他一些方面的功能，比如打包，项目依赖等等。这里不做过多介绍maven，想要使用maven这把利器，首先需要下载安装然后配置，maven的全局配置文件，位于maven_home/conf/settings.xml，一般我们会配置自己的本地仓库以及组织得私服地址。接下来简单介绍配置自己的maven工具。主要是settings文件的各个标签元素。

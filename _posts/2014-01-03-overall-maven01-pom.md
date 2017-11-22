@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Maven的pom文件
-date: 2016-11-30
-categories: "Common_Utils"
+date: 2015-05-20
+categories: "Overall"
 tags: maven
 ---
 　　maven是构建工具，最大的便利之处就是帮助我们管理jar包依赖，当然还有其他一些方面的功能，比如打包，项目依赖等等。这里不做过多介绍maven，而maven的核心就是pom.xml文件。接下来就对pom文件进行简单说明，主要是xml文件的各个标签进行介绍。

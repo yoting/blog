@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java获取线程执行结果
-date: 2016-01-01 19
+date: 2016-06-09
 categories: Java
 tags: java多线程
 ---
@@ -10,7 +10,7 @@ tags: java多线程
 **Executors 类**：此包中所定义的 Executor、ExecutorService、ScheduledExecutorService、ThreadFactory 和 Callable 类的工厂和实用方法。其实就是一个便捷工厂，提供一些便捷方法，比如创建线程池，创建线程，创建Callable接口对象等等
 **Executor接口**：只包含一个execute（）接口方法。主要是用来执行线程任务。
 **ExecutorService接口**：继承Executor接口，额外有submint（）方法，以及shutdown()方法等等。submit方法是提交线程任务，同时使用Future接收返回结果。
-**ScheduledExecutorService接口**：继承ExecutorService接口，额外有schedule（）方法，可安排在给定的延迟后运行或定期执行的命令。 
+**ScheduledExecutorService接口**：继承ExecutorService接口，额外有schedule（）方法，可安排在给定的延迟后运行或定期执行的命令。
 关于上面几个类和接口的UML关系图如下：
 ![javaThreadPool](/assets/yoting/post/java/javaThreadPool.jpg)
 
@@ -27,7 +27,7 @@ executor.execute(new Runnable()
     {
         System.out.println("a");
     }
-}); 
+});
 
 Future<?> future1 = executor.submit(new Runnable()
 {
@@ -53,7 +53,7 @@ Future<Long> future3 = executor.submit(new Callable<Long>()
         System.out.println("d");
         return System.currentTimeMillis();
     }
-}); 
+});
 //注意使用shutdown关闭线程
 executor.shutdown();  
 ```
@@ -135,7 +135,7 @@ public class Main
         boolean isCancel = future.isCancelled();
         System.out.println(cancel + "," + isCancel);//false,false
     }
-} 
+}
 ```
 
 - **FutureTask的使用：**
@@ -210,4 +210,3 @@ while (!scheduledFuture.isDone())// 阻塞式获取结果
 ```
 
 　　从此获取多线程执行返回结果不再是难事啦。。。
-

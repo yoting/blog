@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ThreadLocal的使用介绍
-date: 2016-01-01 20
+date: 2016-09-08
 categories: Java
 tags: java多线程 ThreadLocal
 ---

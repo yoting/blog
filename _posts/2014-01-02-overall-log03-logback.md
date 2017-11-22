@@ -1,8 +1,8 @@
 ---
 layout: post
 title: logback介绍
-date: 2016-01-01
-categories: "Common_Utils"
+date: 2015-03-02
+categories: "Overall"
 tags: logback
 ---
 
@@ -61,7 +61,7 @@ tags: logback
 	<logger name="cn.com.package.Clazz" level="DEBUG" addtivity="false">
 		<appender-ref ref="logFile" />
 	</logger>
-	
+
 	<!-- 根logger -->
 	<root level="INFO">
 		<appender-ref ref="console" />
@@ -76,7 +76,7 @@ tags: logback
 	- scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
 	- scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
 	- debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
-	
+
 - **根节点的子节点logger**:
 　　用来设置某一个包或者具体的某一个类的日志打印级别、以及指定appender。loger仅有一个name属性，一个可选的level和一个可选的addtivity属性。属性：
 	- name:用来指定受此loger约束的某一个包或者具体的某一个类。
@@ -127,11 +127,11 @@ loger可以包含零个或多个appender-ref元素，标识这个appender将会�
 ```xml
 举例caller：
  %caller{2}   输出为：
-0    [main] DEBUG - logging statement 
+0    [main] DEBUG - logging statement
 Caller+0   at mainPackage.sub.sample.Bar.sampleMethodName(Bar.java:22)
 Caller+1   at mainPackage.sub.sample.Bar.createLoggingRequest(Bar.java:17)
  %caller{3}   输出为：
-16   [main] DEBUG - logging statement 
+16   [main] DEBUG - logging statement
 Caller+0   at mainPackage.sub.sample.Bar.sampleMethodName(Bar.java:22)
 Caller+1   at mainPackage.sub.sample.Bar.createLoggingRequest(Bar.java:17)
 Caller+2   at mainPackage.ConfigTester.main(ConfigTester.java:38)

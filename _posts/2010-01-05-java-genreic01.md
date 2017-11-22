@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java泛型的使用
-date: 2015-10-29 13:36:27
+date: 2014-11-29
 categories: Java
 tags: java泛型
 ---
@@ -267,7 +267,7 @@ public class MyFunction {
 @Test
 public void MyFunction() {
     MyFunction clazz = new MyFunction();
-    
+
     //传入什么类型，返回什么类型
     String var1 = clazz.fun1("abc");
     int var2 = clazz.fun1(12);
@@ -297,7 +297,7 @@ public void MyFunction() {
 @Test
 public void testArray(){
     Integer[] arr = fun(1,2,3);
-   
+
 }
 
 public <T> T[] fun(T... args){//传入什么类型，T就是什么类型，并且可以使用泛型遍历
@@ -335,15 +335,14 @@ public void testNest(){
 
 
 
-  
 
 
-  
-  
-    
-      
-        
+
+
+
+
+
+
           genericity.rar (3.1 KB)
-          
+
           下载次数: 6
-        

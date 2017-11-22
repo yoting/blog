@@ -216,7 +216,7 @@ public class ServiceObj
         // B begin time=1467720116631
         // B end time=1467720118632
     }
-          
+
      //同步对象本生this，使用synchronized包裹同步代码块
     public void serviceMethod2(String tName) throws InterruptedException
     {
@@ -263,7 +263,7 @@ public class ServiceObj
                     + System.currentTimeMillis());
         }
     }
-} 
+}
 ```
 
 　　通过synchronized给对象的属性加锁，然后包裹同步代码块。这样相当于把锁加在objAttr这个对象上，通过结果也看以看到两个线程是依次执行的，没有互相捣乱。如果把把这种给对象的属性加锁修改为给一个非对象的属性对象加锁，那么会是怎么样的呢？将ServiceObj代码修改为如下：
@@ -312,7 +312,7 @@ public class ServiceObj
                     + System.currentTimeMillis());
         }
     }
-} 
+}
 ```
 
 　　通过上面的运行结果可以知道这样两个线程的执行也是同步的，但是如果一个线程对“a”字符串对象加锁，另一个线程对“b”字符串加锁，那么这两个线程是非互斥的，他们会各自执行。
@@ -463,7 +463,7 @@ public class ServiceObj
         // 线程名称为：B在1467722724868进入printB
         // 线程名称为：B在1467722725869离开printB
     }
-  
+
     public synchronized static void printA1() throws InterruptedException
     {
         System.out.println("线程名称为：" + Thread.currentThread().getName() + "在"
@@ -503,7 +503,7 @@ public class ServiceObj
         // 线程名称为：B在1467723254954离开printB
         // 线程名称为：A在1467723254955离开printA  
     }
-  
+
     public synchronized static void printA1() throws InterruptedException
     {
         System.out.println("线程名称为：" + Thread.currentThread().getName() + "在"
@@ -532,7 +532,7 @@ public class ServiceObj
 {
     public void serviceMethod(String tName) throws InterruptedException
     {
-        
+
         // 第二种方式：synchronized类Xxx.class，相当于synchronized代码块，这种情况两个线程是互斥的
         if (tName.endsWith("A"))
         {
@@ -547,7 +547,7 @@ public class ServiceObj
         // 线程名称为：B在1467722769003离开printB
 
     }
-   
+
     public static void printA2() throws InterruptedException
     {
         synchronized (ServiceObj.class)
@@ -570,7 +570,7 @@ public class ServiceObj
                     + "在" + System.currentTimeMillis() + "离开printB");
         }
     }
-} 
+}
 ```
 
 　　这种对都是static的方法使用类锁，代码是同步执行的。那么如果对一个static方法，另个非static方法使用类锁，结果是否也是同步的呢？修改ServcieObj对象：
@@ -593,7 +593,7 @@ public class ServiceObj
         // 线程名称为：B在1467722769003离开printB
 
     }
-   
+
     public static void printA2() throws InterruptedException
     {
         synchronized (ServiceObj.class)

@@ -8,7 +8,7 @@ $( document ).ready(function() {
 	quickMenu.click(function(){
 		if(quickMenuDown.css("height") == "0px"){
 			quickMenuDown.css("display","inline-table");
-			quickMenuDown.animate({height:"500px"});
+			quickMenuDown.animate({height:"50px"});
 		}else{
 			quickMenuDown.css("display","none");
 			quickMenuDown.animate({height:"0px"});

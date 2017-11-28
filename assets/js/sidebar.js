@@ -6,10 +6,10 @@ $( document ).ready(function() {
 	var quickMenuDown = $('#quick-menu-down');
         
 	quickMenu.click(function(){
-		if(quickMenuDown.css("display") == "none"){
-			quickMenuDown.css("display","inline-table");	
+		if(quickMenuDown.css("height") == "100px"){
+			quickMenuDown.animate({height:"500px"});
 		}else{
-			quickMenuDown.css("display","none");
+			quickMenuDown..animate({height:"100px"});
 		}
 		
 		if(quickMenuLeft.attr("src").endsWith("open.png")){

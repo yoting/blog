@@ -11,7 +11,7 @@ $( document ).ready(function() {
 			quickMenuDown.animate({height:"500px"});
 		}else{
 			quickMenuDown.css("display","none");
-			quickMenuDown..animate({height:"0px"});
+			quickMenuDown.animate({height:"0px"});
 		}
 		
 		if(quickMenuLeft.attr("src").endsWith("open.png")){

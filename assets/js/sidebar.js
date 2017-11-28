@@ -4,12 +4,30 @@ $( document ).ready(function() {
 	var quickMenuLeft = $('#yanjing-left');
 	var quickMenuRight = $('#yanjing-right');
 	var quickMenuDown = $('#quick-menu-down');
+        var box2 = document.getElementById("quick-menu-down");
 	quickMenu.click(function(){
-		if(quickMenuDown.css("display") == "none"){
-			quickMenuDown.delay("slow").css("display","inline-table");	
+		if(box2.style.top == "" || box2.style.top == "0px"){
+			var heightdown = 0;
+			var movedown = window.setInterval(function(){
+				if(heightdown < 100){
+					heightdown += 2;
+					box2.style.top = heightdown + "px";
+				}else{
+					clearInterval(movedown);
+				}
+			},10);
 		}else{
-			quickMenuDown.delay("slow").css("display","none");
-		}
+			var heightup = 100;
+			var moveup = window.setInterval(function(){
+				if(heightup > 0){
+					heightup -= 2;
+					box2.style.top = heightup + "px";
+				}else{
+					clearInterval(moveup);
+				}
+			},10);
+                }
+		
 		if(quickMenuLeft.attr("src").endsWith("open.png")){
 			quickMenuLeft.attr("src","/blog/assets/ico/yanjing_close.png");
 		}else{

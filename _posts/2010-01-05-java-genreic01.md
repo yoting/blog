@@ -7,7 +7,7 @@ tags: java泛型
 ---
 **1.普通的泛型使用**
 
-　　在使用类的时候后面的<>中的类型就是我们确定的类型。
+　　泛型在平时编码中很常用，今天就简单介绍下泛型再各种情况下的使用。具体书写方式是在使用类的时候后面的<>中的类型就是我们确定的类型。
 
 ```java
 public class MyClass1<T> {//此处定义的泛型是T
@@ -326,23 +326,3 @@ public void testNest(){
     System.out.println(nestOut.getVar().getVar2());
 }
 ```
-
- 
-
- 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-          genericity.rar (3.1 KB)
-
-          下载次数: 6

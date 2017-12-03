@@ -67,7 +67,7 @@ while (itList.hasNext()) {
 }
 ```
 
-- 第三，我们还有个一个择中的办法。首先使用iterator的方法得到所有需要被删除的元素，然后在使用集合的removeAll（）方法一次性将要删的的元素都删除，在removeAll方法中，我们也不会涉及到检查modCount和exceptionModCount是否一致的问题。
+- 另外，我们还有个一个择中的办法。首先使用iterator的方法得到所有需要被删除的元素，然后在使用集合的removeAll（）方法一次性将要删的的元素都删除，在removeAll方法中，我们也不会涉及到检查modCount和exceptionModCount是否一致的问题。
 
 　　这里只列举了List集合的例子，对于Set集合和Map集合是相同的。
 

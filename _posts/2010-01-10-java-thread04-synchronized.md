@@ -5,8 +5,9 @@ date: 2016-07-07
 categories: Java
 tags: java多线程
 ---
-　　在多线程并发的情况下，我们可能需要让某个对象的某个方法被各个线程依次排队的执行，每个线程在执行的时候能不互相影响，而不是在某一时刻仍由其他线程来“捣乱”。这种情况我们最常用的方式就是将对象方法或代码块使用同步代修饰符synchronized保护起来，这样就达到我们期待的线程排队依次执行，等当前线程执行完以后，其他线程再进入方法或代码块执行。java中synchronized关键字可以保证同一时刻，只有一个线程可以执行某一个方法或者某一个代码块。那么synchronized到底怎么用呢，总的来说有5种用法，5种用法又分为两类，一类是对象锁，另一类是类锁。但是我认为类锁其实还是对象锁，为什么这样说，最后看完５种用法再解释。各种方式的具体用法如下：
-　　对于第一类用法，通过给对象加锁的方式保证代码同步，有以下1、2、3三种方式。首先定一个服务对象类ServiceObj，该类对外提供serviceMethod方法，该类的具体代码如下：
+&ensp;&ensp;&ensp;&ensp;在多线程并发的情况下，我们可能需要让某个对象的某个方法被各个线程依次排队的执行，每个线程在执行的时候能不互相影响，而不是在某一时刻仍由其他线程来“捣乱”。这种情况我们最常用的方式就是将对象方法或代码块使用同步代修饰符synchronized保护起来，这样就达到我们期待的线程排队依次执行，等当前线程执行完以后，其他线程再进入方法或代码块执行。java中synchronized关键字可以保证同一时刻，只有一个线程可以执行某一个方法或者某一个代码块。那么synchronized到底怎么用呢，总的来说有5种用法，5种用法又分为两类，一类是对象锁，另一类是类锁。但是我认为类锁其实还是对象锁，为什么这样说，最后看完５种用法再解释。各种方式的具体用法如下：
+
+&ensp;&ensp;&ensp;&ensp;对于第一类用法，通过给对象加锁的方式保证代码同步，有以下1、2、3三种方式。首先定一个服务对象类ServiceObj，该类对外提供serviceMethod方法，该类的具体代码如下：
 
 ```java
 public class ServiceObj
@@ -79,7 +80,8 @@ public class ServiceObj
 }  
 ```
 
-　　然后定义两个线程，两个线程分别执行ServiceObj的serviceMethod方法，具体代码如下：
+&ensp;&ensp;&ensp;&ensp;然后定义两个线程，两个线程分别执行ServiceObj的serviceMethod方法，具体代码如下：
+
 第一个线程：
 
 ```java
@@ -104,6 +106,7 @@ public class MyThreadA extends Thread
     }
 }
 ```
+
 第二个线程：
 
 ```java
@@ -128,7 +131,7 @@ public class MyThreadB extends Thread
     }
 }
 ```
-　　最后在主线程中启动后面两个线程，具体代码如下：
+&ensp;&ensp;&ensp;&ensp;最后在主线程中启动后面两个线程，具体代码如下：
 
 ```java
 public class Main
@@ -146,7 +149,7 @@ public class Main
 }  
 ```
 
-　　在不加synchronized同步serviceMethod情况下，ServiceObj如下：
+&ensp;&ensp;&ensp;&ensp;在不加synchronized同步serviceMethod情况下，ServiceObj如下：
 
 ```java
 public class ServiceObj
@@ -170,9 +173,10 @@ public class ServiceObj
 }  
 ```
 
-　　通过运行结果明显看到线程A还没执行完毕，线程B就开始执行，也就是说线程B其实会有可能干扰线程A执行。在并发的情况下，这样是有问题的。所以我们需要通过synchronized让代码同步执行。
+&ensp;&ensp;&ensp;&ensp;通过运行结果明显看到线程A还没执行完毕，线程B就开始执行，也就是说线程B其实会有可能干扰线程A执行。在并发的情况下，这样是有问题的。所以我们需要通过synchronized让代码同步执行。
 
 - **1、synchronized加在对象方法上**
+
 将ServiceObj修改为：
 
 ```java
@@ -199,9 +203,10 @@ public class ServiceObj
 }  
 ```
 
-　　这是最常用的写法，直接在需要同步的方法上加上synchronized修饰符，通过结果看到A线程在彻底执行完毕以后，B线程才开始执行。
+&ensp;&ensp;&ensp;&ensp;这是最常用的写法，直接在需要同步的方法上加上synchronized修饰符，通过结果看到A线程在彻底执行完毕以后，B线程才开始执行。
 
 - **2、synchronized锁this对象代码块**
+
 将ServiceObj修改为：
 
 ```java
@@ -232,9 +237,10 @@ public class ServiceObj
 }  
 ```
 
-　　通过所以synchronized将需要同步的代码块包裹起来，同时对this对象加锁。通过结果看到A线程在彻底执行完毕以后，B线程才开始执行。
+&ensp;&ensp;&ensp;&ensp;通过所以synchronized将需要同步的代码块包裹起来，同时对this对象加锁。通过结果看到A线程在彻底执行完毕以后，B线程才开始执行。
 
 - **3、synchronized锁对象属性或某个具体对象**
+
 将ServiceObj修改为：
 
 ```java
@@ -266,7 +272,7 @@ public class ServiceObj
 }
 ```
 
-　　通过synchronized给对象的属性加锁，然后包裹同步代码块。这样相当于把锁加在objAttr这个对象上，通过结果也看以看到两个线程是依次执行的，没有互相捣乱。如果把把这种给对象的属性加锁修改为给一个非对象的属性对象加锁，那么会是怎么样的呢？将ServiceObj代码修改为如下：
+&ensp;&ensp;&ensp;&ensp;通过synchronized给对象的属性加锁，然后包裹同步代码块。这样相当于把锁加在objAttr这个对象上，通过结果也看以看到两个线程是依次执行的，没有互相捣乱。如果把把这种给对象的属性加锁修改为给一个非对象的属性对象加锁，那么会是怎么样的呢？将ServiceObj代码修改为如下：
 
 ```java
 public class ServiceObj
@@ -315,10 +321,11 @@ public class ServiceObj
 }
 ```
 
-　　通过上面的运行结果可以知道这样两个线程的执行也是同步的，但是如果一个线程对“a”字符串对象加锁，另一个线程对“b”字符串加锁，那么这两个线程是非互斥的，他们会各自执行。
-　　通过上面三种方式，在并发的时候对代码能够同步执行，其实主要就是利用锁机制，可以简单理解为当一个线程在获取了某个对象的锁的时候，其他线程都只有等待该线程释放该对象的锁以后才能够执行。
+&ensp;&ensp;&ensp;&ensp;通过上面的运行结果可以知道这样两个线程的执行也是同步的，但是如果一个线程对“a”字符串对象加锁，另一个线程对“b”字符串加锁，那么这两个线程是非互斥的，他们会各自执行。
 
-　　下面两种情况是给类加锁，首先修改ServiceObj类为：
+&ensp;&ensp;&ensp;&ensp;通过上面三种方式，在并发的时候对代码能够同步执行，其实主要就是利用锁机制，可以简单理解为当一个线程在获取了某个对象的锁的时候，其他线程都只有等待该线程释放该对象的锁以后才能够执行。
+
+&ensp;&ensp;&ensp;&ensp;下面两种情况是给类加锁，首先修改ServiceObj类为：
 
 ```java
 public class ServiceObj
@@ -403,7 +410,7 @@ public class ServiceObj
 }
 ```
 
-　　然后依然使用上面的两个线程MyThreadA和MyThreadB,最后在主线程中启动两个线程。如果不加同步标签，将ServiceObj对象的serviceMethod修改为如下：
+&ensp;&ensp;&ensp;&ensp;然后依然使用上面的两个线程MyThreadA和MyThreadB,最后在主线程中启动两个线程。如果不加同步标签，将ServiceObj对象的serviceMethod修改为如下：
 
 ```java
 public class ServiceObj
@@ -443,6 +450,7 @@ public class ServiceObj
 ```
 
 - **4、synchronized加在类的静态方法上**
+
 修改ServiceObj对象：
 
 ```java
@@ -483,7 +491,7 @@ public class ServiceObj
 }  
 ```
 
-　　上面两个线程分别执行ServiceObj的两个不同的static方法，结果是代码同步执行，说明是对整个类加锁，所以导致整个类的所有synchronized修饰的static方法都是同步执行。但是如果我么synchronized锁一个static方法，另个一线程锁非static方法，那么结果会怎么样呢？修改代码如下：
+&ensp;&ensp;&ensp;&ensp;上面两个线程分别执行ServiceObj的两个不同的static方法，结果是代码同步执行，说明是对整个类加锁，所以导致整个类的所有synchronized修饰的static方法都是同步执行。但是如果我么synchronized锁一个static方法，另个一线程锁非static方法，那么结果会怎么样呢？修改代码如下：
 
 ```java
 public class ServiceObj
@@ -522,9 +530,11 @@ public class ServiceObj
     }
 }  
 ```
-　　结果和明显，两个线程的代码并没有同步执行。因为两个线程锁的对象不同，static方法锁的是整个类对象，而非static方法锁的是类产生的对象，不是类对象。所以两个线程的代码是不能同步的。
+
+&ensp;&ensp;&ensp;&ensp;结果和明显，两个线程的代码并没有同步执行。因为两个线程锁的对象不同，static方法锁的是整个类对象，而非static方法锁的是类产生的对象，不是类对象。所以两个线程的代码是不能同步的。
 
 - **5、synchronized锁Class对象**
+
 修改ServcieObj对象：
 
 ```java
@@ -573,7 +583,7 @@ public class ServiceObj
 }
 ```
 
-　　这种对都是static的方法使用类锁，代码是同步执行的。那么如果对一个static方法，另个非static方法使用类锁，结果是否也是同步的呢？修改ServcieObj对象：
+&ensp;&ensp;&ensp;&ensp;这种对都是static的方法使用类锁，代码是同步执行的。那么如果对一个static方法，另个非static方法使用类锁，结果是否也是同步的呢？修改ServcieObj对象：
 
 ```java
 public class ServiceObj
@@ -619,5 +629,6 @@ public class ServiceObj
 }  
 ```
 
-　　通过结果观察，这中方式也是同步的。因为两个线程都锁的是类对象，也就是说锁的同一个对象，所以他们之间是同步执行的。
-　　最后，我觉得其实并没有类锁这个东西，synchronized所得都是某一个对象，前三种1、2、3的方式都是锁的是类锁产生的对象或者类的属性对象或者某一个具体的对象（比如字符串"a"对象），所以两个线程之间能够互斥同步执行。第4、5两种方式，归根到底也是给某个对象加锁，都可一等价类比于第三种的给字符串“a”加锁，因为Xxx.class也是一个对象。
+&ensp;&ensp;&ensp;&ensp;通过结果观察，这中方式也是同步的。因为两个线程都锁的是类对象，也就是说锁的同一个对象，所以他们之间是同步执行的。
+
+&ensp;&ensp;&ensp;&ensp;最后，我觉得其实并没有类锁这个东西，synchronized所得都是某一个对象，前三种1、2、3的方式都是锁的是类锁产生的对象或者类的属性对象或者某一个具体的对象（比如字符串"a"对象），所以两个线程之间能够互斥同步执行。第4、5两种方式，归根到底也是给某个对象加锁，都可一等价类比于第三种的给字符串“a”加锁，因为Xxx.class也是一个对象。

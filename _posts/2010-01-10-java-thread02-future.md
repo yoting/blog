@@ -5,14 +5,21 @@ date: 2016-06-09
 categories: Java
 tags: java多线程
 ---
-　　在使用多线程执行某些任务的时候，我们通常会使用Runnable接口或者Thread类完成。但是这两种方式都没法获取线程执行结束以后返回的结果，如果我们要获取某个线程执行完成以后返回的结果，java中给我们提供了Callable和Future以及FutureTask可以达到获取线程执行结果的方式。
-　　首先了解几个基础接口和类：
-**Executors 类**：此包中所定义的 Executor、ExecutorService、ScheduledExecutorService、ThreadFactory 和 Callable 类的工厂和实用方法。其实就是一个便捷工厂，提供一些便捷方法，比如创建线程池，创建线程，创建Callable接口对象等等
-**Executor接口**：只包含一个execute（）接口方法。主要是用来执行线程任务。
-**ExecutorService接口**：继承Executor接口，额外有submint（）方法，以及shutdown()方法等等。submit方法是提交线程任务，同时使用Future接收返回结果。
-**ScheduledExecutorService接口**：继承ExecutorService接口，额外有schedule（）方法，可安排在给定的延迟后运行或定期执行的命令。
+&ensp;&ensp;&ensp;&ensp;在使用多线程执行某些任务的时候，我们通常会使用Runnable接口或者Thread类完成。但是这两种方式都没法获取线程执行结束以后返回的结果，如果我们要获取某个线程执行完成以后返回的结果，java中给我们提供了Callable和Future以及FutureTask可以达到获取线程执行结果的方式。
+
+### 相关接口概念
+
+&ensp;&ensp;&ensp;&ensp;首先了解几个基础接口和类：
+
+- **Executors 类**：此包中所定义的 Executor、ExecutorService、ScheduledExecutorService、ThreadFactory 和 Callable 类的工厂和实用方法。其实就是一个便捷工厂，提供一些便捷方法，比如创建线程池，创建线程，创建Callable接口对象等等
+- **Executor接口**：只包含一个execute（）接口方法。主要是用来执行线程任务。
+- **ExecutorService接口**：继承Executor接口，额外有submint（）方法，以及shutdown()方法等等。submit方法是提交线程任务，同时使用Future接收返回结果。
+- **ScheduledExecutorService接口**：继承ExecutorService接口，额外有schedule（）方法，可安排在给定的延迟后运行或定期执行的命令。
+
 关于上面几个类和接口的UML关系图如下：
 ![javaThreadPool](/assets/yoting/post/java/javaThreadPool.jpg)
+
+### 使用示例
 
 - **Callable接口的使用：**
 

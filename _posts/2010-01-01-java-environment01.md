@@ -16,6 +16,7 @@ tags: java环境变量
 &ensp;&ensp;&ensp;&ensp;运行Java程序只需要有jre即可，jdk是专门为开发人员使用的。首先在开发机器上下载并安装jdk。
 
 **2、配置环境变量Path**
+
 &ensp;&ensp;&ensp;&ensp;在开发之前需要配置环境变量：
 
 - JAVA_HOME=C:\Program Files\Java\jdk1.7.0 (jdk安装目录)
@@ -37,6 +38,7 @@ tags: java环境变量
 &ensp;&ensp;&ensp;&ensp;配置Classpath和配置Paht相同，需要注意的是所有的临时变量只在当前窗口有效。
 
 **3、开发第一个helloworld程序**
+
 &ensp;&ensp;&ensp;&ensp;编写helloworld程序如下：
 
 ```java
@@ -59,4 +61,5 @@ public class HelloWorld{
 &ensp;&ensp;&ensp;&ensp;尽量保证文件名称和class定义的名称相同，当class前面没有public时，可以不同可以相同，但是前面要是有public时，文件名和class名称必须相同
 
 **4、下载IDE集成开发环境**
+
 &ensp;&ensp;&ensp;&ensp;可以使用eclipse，myeclipse，intelljIdea等。

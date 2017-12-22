@@ -16,9 +16,11 @@ tags: websocket
 - **websocket**：客户端发送一次http websocket请求，服务器响应请求，双方建立持久连接，并进行双向数据传输，后面不再进行HTTP连接，而是使用TCP连接，双方都可以随时通过TCP连接像对方发送数据。
 
 ### **简单使用websocket示例**：
+
 &ensp;&ensp;&ensp;&ensp;通过简单示例，从客户端像服务端发起一个websocket连接，然后服务端收到连接后向客户端发送消息，客户端收到消息后再向服务端发送消息。示例代码如下：（另外需要注意对环境有要求）
 
 - **客户端请求发起websocket连接**，使用简单js发起连接
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -76,6 +78,7 @@ tags: websocket
     </body>
 </html>
 ```
+
 - **服务端接收websocket**
 
 &ensp;&ensp;&ensp;&ensp;依赖的pom文件：这些依赖配置的scope都是provided，只在编译的时候需要，在运行时候，web容器（tomcat）中本来就有这些包，但是需要注意编译时候使用的jar包和最后运行时使用的web容器中的jar包版本是兼容的才行。
@@ -94,6 +97,7 @@ tags: websocket
 </dependency>
 ```
 &ensp;&ensp;&ensp;&ensp;服务端接收请求的servelt:该servlet继承抽象类WebSocketServlet，只需要实现该抽象类的createWebSocketInbound方法。请求到达对应的servlet后，其实还是执行父类的doGet方法，在doGet方法中再调运了该方法生成一个websocket连接。注意该方法在tomcat的不同版本实现由变化。
+
 ```java
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WebSocketServlet;
@@ -110,7 +114,9 @@ public class DemoWebSocketServlet extends WebSocketServlet {
     }
 }
 ```
+
 &ensp;&ensp;&ensp;&ensp;服务端处理websocket连接和消息的：该对象是真真处理websocket客户端消息的对象，可以处理各种消息对象，比如建立连接，关闭联系，消息等。
+
 ```java
 //该类可以作为上面接收请求servlet私有内部类
 import org.apache.catalina.websocket.MessageInbound;
@@ -164,7 +170,9 @@ public class DemoWebSocketInbound extends MessageInbound {
     }
 }
 ```
+
 &ensp;&ensp;&ensp;&ensp;配置servlet映射路径，在web.xml中加入配置。当然servlet3.0开始可以直接使用@Servlet注解定义servlet，实质上和在wem.xml中配置原理和效果是相同的。
+
 ```xml
     <servlet>
         <servlet-name>aaaServlet</servlet-name>
@@ -179,6 +187,7 @@ public class DemoWebSocketInbound extends MessageInbound {
 - **通过注解方式发起连接和处理连接**
 
 &ensp;&ensp;&ensp;&ensp;依赖的pom文件：
+
 ```xml
 <dependency>
     <groupId>javax.websocket</groupId>
@@ -189,6 +198,7 @@ public class DemoWebSocketInbound extends MessageInbound {
 ```
 
 &ensp;&ensp;&ensp;&ensp;服务端：服务端主要使用@ServerEndpoint注解
+
 ```java
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -282,7 +292,6 @@ public class DemoWebSocketEndPoint {
         DemoWebSocketEndPoint.onlineCount--;
     }
 }
-
 ```
 
 &ensp;&ensp;&ensp;&ensp;客户端：客户端主要使用@ClientEndpoint注解。使用了glassfish的ClientManager工具，需要导入相关的jar包。
@@ -344,6 +353,7 @@ public class DemoClientEndPoint {
 - **服务端处理通过spring集成方式**
 
 &ensp;&ensp;&ensp;&ensp;导入相关的jar包：(除spring基础包，还需要spring-websocket和spring-messaging)
+
 ```xml
  <dependency>
     <groupId>org.springframework</groupId>
@@ -383,6 +393,7 @@ public class DemoClientEndPoint {
 ```
 
 &ensp;&ensp;&ensp;&ensp;定义一个拦截器，处理发起websocket消息之前的握手
+
 ```java
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
@@ -409,7 +420,9 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
     }
 }
 ```
+
 &ensp;&ensp;&ensp;&ensp;定义一个websocket消息事件处理类，用于处理消息接收以及连接开启关闭等。
+
 ```java
 import java.util.concurrent.TimeUnit;
 
@@ -420,7 +433,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
-
 
 /**
  * websocket事件处理器类
@@ -468,6 +480,7 @@ public class DemoWebsocketHandler extends AbstractWebSocketHandler {
 ```
 
 &ensp;&ensp;&ensp;&ensp;配置spring的xml文件，用于定义websocket的处理器类和websocket连接地址的映射关系。
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -501,7 +514,9 @@ public class DemoWebsocketHandler extends AbstractWebSocketHandler {
     <!--</websocket:handlers>-->
 </beans>
 ```
+
 &ensp;&ensp;&ensp;&ensp;配置springMvc的跳转，因为在建立websocket通道之前需要通过http接口握手后，才能开辟websocket通道。
+
 ```xml
 <!--加载springmvc容器-->
 <servlet>
@@ -518,4 +533,5 @@ public class DemoWebsocketHandler extends AbstractWebSocketHandler {
     <url-pattern>/</url-pattern>
 </servlet-mapping>
 ```
+
 &ensp;&ensp;&ensp;&ensp;以上就是对websocket的简单使用，通过客户端发起websocket连接，到互相发送消息。如果直接用websocket编写web应用，类似与直接使用tcp套接字，这样的效率很低。 STOMP 相当于基于websocket之上的一个高层级的线路协议，我们可以使用STOMP协议进行消息的交换，具体做法示例下一篇文章介绍和尝试！

@@ -12,14 +12,14 @@
 ### 文章命名规则
 - 日期顺序-分类-内容标签[number]-具体内容.md
 - 日期顺序按照分类来确定，保证相同的分类文章在一起
-- 分类是固定的集中大分类
+- 分类是固定的几种（Java、Design_Pattern、Database、Frame、Overall、Common_Utils）大分类
 - 内容标签有相同的时候，按照自然数顺序累加
 - 具体内容是更详细的分类
 
 ### 文章分类
 - Java
 - Design_Pattern
-- DataBase
+- Database
 - Frame
 - Overall
 - Common_Utils

@@ -2,7 +2,7 @@
 layout: post
 title: MySql日志binlog介绍
 date: 2017-11-31
-categories: "DataBase"
+categories: "Database"
 tags: mysql binlog
 ---
 
